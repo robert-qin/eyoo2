@@ -86,7 +86,7 @@
 			<br> <br>
 			<table align="center" style="table-layout: fixed;">
 				<tr>
-					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }Eyoo&nbsp;</a></td>
+					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }动态&nbsp;</a></td>
 					<td><a href="listFollow.action?userId=${user.userId }">${user.followCount }关注&nbsp;</a></td>
 					<td><a href="listFans.action?userId=${user.userId }">${user.fansCount }粉丝</td>
 				</tr>
@@ -116,7 +116,7 @@
 		<div style="width: 70%; float: left;">
 			<!-- 发送新Eyoo -->
 			<div class="container" style="width: auto; background-color: #fff;">
-				<p style="font-size: 40px; color: black">分享新鲜事</p>
+				<p style="font-size: 40px; color: black">写你所想</p>
 				<form method="post" action="post.action">
 					<textarea class="form-control" rows="4"
 						style="border: 1px; resize: none; width: 100%; background-color: #eee"
@@ -135,7 +135,7 @@
 								</div>
 								<div id="two" style="float: left;">
 									<button id="posteyoo" type="submit"
-										class="form-control btn btn-success">发Eyoo</button>
+										class="form-control btn btn-success">发心情</button>
 								</div>
 							</div>
 						</div>

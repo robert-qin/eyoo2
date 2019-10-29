@@ -99,7 +99,7 @@
 				<li><button style="margin-top: 8px; margin-left: 5px;"
 						onclick="search_people();" class="form-control btn btn-info">找人</button></li>
 				<li><button style="margin-top: 8px; margin-left: 10px;"
-						onclick="search_eyoo();" class="form-control btn btn-info">找Eyoo</button></li>
+						onclick="search_eyoo();" class="form-control btn btn-info">搜索</button></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="notice" href="#"
