@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `eyoo_id` int(11) DEFAULT NULL COMMENT '微博id',
+  `eyoo_id` int(11) DEFAULT NULL COMMENT 'Eyooid',
   `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '评论时间',
   `comment_content` varchar(100) NOT NULL COMMENT '评论内容',
   PRIMARY KEY (`comment_id`),
@@ -604,7 +604,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 DROP TABLE IF EXISTS `eyoo`;
 CREATE TABLE `eyoo` (
-  `eyoo_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微博id',
+  `eyoo_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Eyooid',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `post_time` datetime DEFAULT NULL COMMENT '发送时间',
   `content` varchar(100) NOT NULL COMMENT '文字内容',

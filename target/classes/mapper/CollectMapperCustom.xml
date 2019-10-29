@@ -50,7 +50,7 @@
 		DELETE FROM collect WHERE eyoo_id=#{eyooId} AND user_id=#{userId}
 	</delete>
 	
-	<!-- 用户是否收藏微博 -->
+	<!-- 用户是否收藏Eyoo -->
 	<select id="isCollect" parameterType="po.CollectCustom" resultType="po.CollectCustom">
 		SELECT * FROM collect WHERE eyoo_id=#{eyooId} AND user_id=#{userId}
 	</select>

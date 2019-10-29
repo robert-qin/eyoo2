@@ -75,7 +75,7 @@ public class RelationController {
 		UserCustom user = (UserCustom) userService.queryInfoByUserId(userId).get(0);
 		UserCustom me = (UserCustom) session.getAttribute("user");
 		user.setUserId(userId);
-		// 微博数
+		// Eyoo数
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
@@ -139,7 +139,7 @@ public class RelationController {
 			session.setAttribute("user", me);
 		}
 
-		// 微博数
+		// Eyoo数
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());

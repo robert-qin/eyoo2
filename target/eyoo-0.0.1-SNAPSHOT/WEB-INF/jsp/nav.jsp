@@ -5,7 +5,7 @@
 
 
 <script type="text/javascript">
-	// 查找微博
+	// 查找Eyoo
 	function search_eyoo() {
 		var keyWord = $("#searchText").val();
 		var url = "${pageContext.request.contextPath }/queryeyooByWord.action?pageNo=1&keyWord="
@@ -99,7 +99,7 @@
 				<li><button style="margin-top: 8px; margin-left: 5px;"
 						onclick="search_people();" class="form-control btn btn-info">找人</button></li>
 				<li><button style="margin-top: 8px; margin-left: 10px;"
-						onclick="search_eyoo();" class="form-control btn btn-info">找微博</button></li>
+						onclick="search_eyoo();" class="form-control btn btn-info">找Eyoo</button></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a id="notice" href="#"

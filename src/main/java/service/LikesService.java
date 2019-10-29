@@ -17,7 +17,7 @@ public interface LikesService {
 	// 查询用户被赞过信息
 	Page<LikesCustom> queryLikesByUserId(int userId,int pageNo);
 
-	// 查询我赞过的微博
+	// 查询我赞过的Eyoo
 	Page<LikesCustom> queryLikedeyooSelf(Integer userId, int pageNo);
 
 

@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-  <title>微博管理后台</title>
+  <title>Eyoo管理后台</title>
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width">        
@@ -17,7 +17,7 @@
   <div id="main-wrapper">
     <div class="navbar navbar-inverse" role="navigation">
       <div class="navbar-header">
-        <div class="logo"><h1>微博后台管理</h1></div>
+        <div class="logo"><h1>Eyoo后台管理</h1></div>
       </div>   
     </div>
     <div class="template-page-wrapper">

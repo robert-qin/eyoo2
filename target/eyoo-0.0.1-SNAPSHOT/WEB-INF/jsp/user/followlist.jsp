@@ -60,7 +60,7 @@
 				<br>
 				<table width="100%" style="table-layout: fixed; font-size: 20px">
 					<tr>
-						<td><a href="queryUserPage.action?pageNo=1&userId=${user.userId}">${eyooCount }微博</a></td>
+						<td><a href="queryUserPage.action?pageNo=1&userId=${user.userId}">${eyooCount }Eyoo</a></td>
                         <td><a href="listFollow.action?userId=${user.userId}">${followCount }关注</a></td>
                         <td><a href="listFans.action?userId=${user.userId}">${fansCount }粉丝</a></td>
 					</tr>

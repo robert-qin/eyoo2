@@ -27,7 +27,7 @@
 		<div class="row">
 			<div class="leftbox" style="margin: 40px">
 				<!-- 头像 -->
-				<img src="D:\新建文件夹 (3)\ssm-demo-master\src\main\resources\img\${user.face}" height="150px" width="150px"
+				<img src="imgUpload\${user.face}" height="150px" width="150px"
 					class="img-circle" align="center">
 			</div>
 			<div class="rightbox">
@@ -64,7 +64,7 @@
 				<br>
 				<table width="100%" style="table-layout: fixed; font-size: 20px">
 					<tr>
-						<td><a href="queryUserPage.action?pageNo=1&userId=${user.userId}">${eyooCount }微博</a></td>
+						<td><a href="queryUserPage.action?pageNo=1&userId=${user.userId}">${eyooCount }Eyoo</a></td>
 						<td><a href="listFollow.action?userId=${user.userId}">${followCount }关注</a></td>
 						<td><a href="listFans.action?userId=${user.userId}">${fansCount }粉丝</a></td>
 					</tr>

@@ -12,7 +12,7 @@ public class ReplyCustom extends Reply {
 	private String from_face;
 	private String to_face;
 
-	// 源微博
+	// 源Eyoo
 	private eyoo eyoo;
 
 	// 回复时间 sql扩展

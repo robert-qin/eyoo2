@@ -21,7 +21,7 @@ public interface UserService {
 	@Transactional
 	public void updateUserInfo(UserVo userVo) throws Exception;
 
-	// 根据用户id查询用户的微博数
+	// 根据用户id查询用户的Eyoo数
 	public int queryeyooCount(Integer userId) throws Exception;
 
 	// 根据用户id查询用户的关注数

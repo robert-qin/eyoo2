@@ -72,7 +72,7 @@
 			<br> <br>
 			<table align="center" style="table-layout: fixed;">
 				<tr>
-					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }微博&nbsp;</a></td>
+					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }Eyoo&nbsp;</a></td>
 					<td><a href="listFollow.action?userId=${user.userId }">${user.followCount }关注&nbsp;</a></td>
 					<td><a href="listFans.action?userId=${user.userId }">${user.fansCount }粉丝</td>
 				</tr>
@@ -235,7 +235,7 @@
 					       	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					       		<span aria-hidden="true">&times;</span>
 					       	</button>
-					       	<h4 class="modal-title" id="myModalLabel" style="color: #987">转发这条微博</h4>
+					       	<h4 class="modal-title" id="myModalLabel" style="color: #987">转发这条Eyoo</h4>
 				     	</div>
 				     	<div class="modal-body">
 				     	<c:if test="${eyoo.original == 0 }">
@@ -262,7 +262,7 @@
 							<textarea class="content comment-input "
 								placeholder="等待输入......." onkeyup="keyUP(this) "></textarea>
 							<a href="javascript:; " class="plBtn " >评论</a>
-							<!-- 微博id -->
+							<!-- Eyooid -->
 							<input type="hidden" value="${eyoo.eyooId}" class="eyooId">
 						</div>
 						<!--评论区域 end-->
@@ -318,7 +318,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	//转发微博
+	//转发Eyoo
 	function repost(eyooId) {
 		$('#Modal'+eyooId).modal('toggle');
 	}
@@ -334,7 +334,7 @@
 		window.location=url;
 	}
 	
-	//跳至所选微博页
+	//跳至所选Eyoo页
 	function clickeyoo(eyooId) {
 		var url = "singleeyoo.action?eyooId=" + eyooId;
 		window.open(url);

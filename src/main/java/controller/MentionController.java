@@ -136,16 +136,16 @@ public class MentionController {
 		user.setMentionCustom(mention);
 		session.setAttribute("user", user);
 
-		// 用户被转发的微博列表
+		// 用户被转发的Eyoo列表
 		Page<eyooCustom> page = new Page<eyooCustom>();
 		page.setPageNo(pageNo);
 		page.getParams().put("userId", user.getUserId());
-		// 转发微博外部
+		// 转发Eyoo外部
 		Page<eyooCustom> pageList = eyooService.queryRepostByUserId(page);
-		// 源微博
+		// 源Eyoo
 		List<eyooCustom> eyooList = pageList.getResults();
 		for (eyooCustom eyoo : eyooList) {
-			// 查询微博转发 评论 点赞次数
+			// 查询Eyoo转发 评论 点赞次数
 			eyoo.setRepostCount(eyooService.queryRepostCount(eyoo.geteyooId()));
 			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyoo.setLikeCount(eyooService.queryLikeCount(eyoo.geteyooId()));
@@ -280,7 +280,7 @@ public class MentionController {
 		List<LikesCustom> likesList = page.getResults();
 		for (LikesCustom like : likesList) {
 			eyooCustom eyoo = like.geteyoo();
-			// 微博发送时间
+			// Eyoo发送时间
 			eyoo.setDate(dateConvert.convert2s(eyoo.getPostTime()));
 			// 用户是否赞过
 			eyoo.setLikes(likesService.isLike(user.getUserId(), eyoo.geteyooId()));
@@ -288,10 +288,10 @@ public class MentionController {
 			// 用户是否收藏
 			eyoo.setCollect(collectService.isCollect(user.getUserId(), eyoo.geteyooId()));
 
-			// 查询微博 评论 点赞次数
+			// 查询Eyoo 评论 点赞次数
 			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyoo.setLikeCount(eyooService.queryLikeCount(eyoo.geteyooId()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyoo.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyoo.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -322,7 +322,7 @@ public class MentionController {
 		List<CollectCustom> collectionList = page.getResults();
 		for (CollectCustom collection : collectionList) {
 			eyooCustom eyoo = collection.geteyoo();
-			// 微博发送时间
+			// Eyoo发送时间
 			eyoo.setDate(dateConvert.convert2s(eyoo.getPostTime()));
 			// 用户是否赞过
 			eyoo.setLikes(likesService.isLike(user.getUserId(), eyoo.geteyooId()));
@@ -330,10 +330,10 @@ public class MentionController {
 			// 用户是否收藏
 			eyoo.setCollect(collectService.isCollect(user.getUserId(), eyoo.geteyooId()));
 
-			// 查询微博 评论 点赞次数
+			// 查询Eyoo 评论 点赞次数
 			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyoo.setLikeCount(eyooService.queryLikeCount(eyoo.geteyooId()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyoo.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyoo.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));

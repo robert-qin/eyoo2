@@ -84,7 +84,7 @@
 	<div class="navbar" role="navigation">
 		<div class="navbar-header">
 			<div class="logo">
-				<h1>微博后台管理</h1>
+				<h1>Eyoo后台管理</h1>
 			</div>
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target=".navbar-collapse">
@@ -98,7 +98,7 @@
 		<div class="navbar-collapse collapse templatemo-sidebar">
 			<ul class="templatemo-sidebar-menu">
 				<li class="active"><a href="#"><i class="fa fa-home"></i>概览</a></li>
-				<li><a href="#"><i class="fa fa-database"></i>微博管理</a></li>
+				<li><a href="#"><i class="fa fa-database"></i>Eyoo管理</a></li>
 				<li><a href="tables.html"><i class="fa fa-users"></i>用户管理</a></li>
 				<li><a href="preferences.html"><i class="fa fa-cog"></i>密码修改</a></li>
 				<li><a href="javascript:;" data-toggle="modal"

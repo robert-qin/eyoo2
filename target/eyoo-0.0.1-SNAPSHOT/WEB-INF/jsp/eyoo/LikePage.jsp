@@ -79,7 +79,7 @@
 			<br> <br>
 			<table align="center" style="table-layout: fixed;">
 				<tr>
-					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }微博&nbsp;</a></td>
+					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }Eyoo&nbsp;</a></td>
 					<td><a href="listFollow.action?userId=${user.userId }">${user.followCount }关注&nbsp;</a></td>
 					<td><a href="listFans.action?userId=${user.userId }">${user.fansCount }粉丝</td>
 				</tr>
@@ -119,10 +119,10 @@
 					<div style="text-align: left; margin: 10px;">
 						<!-- 昵称 -->
 						<a style="color: #333; font-size: 15px" href="javascrip:;">${like.user.nickname }</a>
-						<span style="color: #999;">赞了我的微博</span>
+						<span style="color: #999;">赞了我的Eyoo</span>
 						<!-- 时间 -->
 						<p style="color: #999; font-size: 15px">${like.date }</p>
-						<!-- 简略微博内容 -->
+						<!-- 简略Eyoo内容 -->
 						<div style="background-color: #eaeaec;float: left;">
 							<a style="color: #333; float: left; font-size: 15px;">@${like.eyoo_nickname }</a>
 							<span style="color: #333;">&nbsp;:&nbsp;</span>
@@ -177,7 +177,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	//转发微博
+	//转发Eyoo
 	function repost(eyooId) {
 		$('#Modal'+eyooId).modal('toggle');
 	}
@@ -193,7 +193,7 @@
 		window.location=url;
 	}
 	
-	//跳至所选微博页
+	//跳至所选Eyoo页
 	function clickeyoo(eyooId) {
 		var url = "singleeyoo.action?eyooId=" + eyooId;
 		window.open(url);

@@ -17,7 +17,7 @@
 	<!-- 用户 -->
 	<bean id="userService" class="service.impl.UserServiceImpl"></bean>
 	
-	<!-- 微博 -->
+	<!-- Eyoo -->
 	<bean id="eyooService" class="service.impl.eyooServiceImpl"></bean>
 	
 	<!-- 用户关系 -->

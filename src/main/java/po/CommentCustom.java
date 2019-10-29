@@ -7,7 +7,7 @@ public class CommentCustom extends Comment {
 	// 扩展User
 	private User user;
 
-	// 被评论微博用户昵称
+	// 被评论Eyoo用户昵称
 	private String eyoo_nickname;
 
 	private eyoo eyoo;

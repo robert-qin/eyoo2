@@ -80,7 +80,7 @@
 			<br> <br>
 			<table align="center" style="table-layout: fixed;">
 				<tr>
-					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }微博&nbsp;</a></td>
+					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }Eyoo&nbsp;</a></td>
 					<td><a href="listFollow.action?userId=${user.userId }">${user.followCount }关注&nbsp;</a></td>
 					<td><a href="listFans.action?userId=${user.userId }">${user.fansCount }粉丝</td>
 				</tr>
@@ -133,10 +133,10 @@
 						<span style="color: #333; float: left;">&nbsp;:&nbsp;</span>
 						<p style="color: #333; font-size: 15px; text-align: left;">${reply.content }</p>
 					</div>
-					<!-- 源微博 -->
-					<!-- 简略微博内容 -->
+					<!-- 源Eyoo -->
+					<!-- 简略Eyoo内容 -->
 					<div style="background-color: #eaeaec;float: left;margin-left: 85px; margin-bottom: 10px;">
-						<span style="color: #999;">回复我在微博</span>
+						<span style="color: #999;">回复我在Eyoo</span>
 						<span style="color: #333;">&nbsp;:&nbsp;</span>
 						<a style="color: #333; font-size: 15px" href="singleeyoo.action?eyooId=${ reply.eyoo.eyooId}">${reply.eyoo.content }</a>
 					</div>
@@ -188,7 +188,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	//转发微博
+	//转发Eyoo
 	function repost(eyooId) {
 		$('#Modal'+eyooId).modal('toggle');
 	}
@@ -204,7 +204,7 @@
 		window.location=url;
 	}
 	
-	//跳至所选微博页
+	//跳至所选Eyoo页
 	function clickeyoo(eyooId) {
 		var url = "singleeyoo.action?eyooId=" + eyooId;
 		window.open(url);

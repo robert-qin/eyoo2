@@ -92,7 +92,7 @@
 				<div style="text-align: left; margin-left: 85px">
 					<p style="color: #333; font-size: 17px">${eyoo.content }</p>
 				</div>
-				<!-- 原创微博 -->
+				<!-- 原创Eyoo -->
 				<c:if test="${eyoo.original == 1 }">
 					<!-- 图片 -->
 					<div class="example" style="margin-left: 85px; margin-bottom: 20px;">
@@ -144,7 +144,7 @@
 				</c:if>
 			</div>
 
-			<!-- 非原创 转发微博 -->
+			<!-- 非原创 转发Eyoo -->
 			<c:if test="${eyoo.original == 0 }">
 				<!-- 头部 -->
 				<div class="container"
@@ -243,7 +243,7 @@
 					<textarea class="content comment-input "
 						placeholder="等待输入......." onkeyup="keyUP(this) "></textarea>
 					<a href="javascript:; " class="plBtn " >评论</a>
-					<!-- 微博id -->
+					<!-- Eyooid -->
 					<input type="hidden" value="${eyoo.eyooId}" class="eyooId">
 				</div>
 				<!--评论区域 end-->
@@ -299,9 +299,9 @@
 
 	<script type="text/javascript">
 	
-	//删除微博
+	//删除Eyoo
 	function deleyoo(eyooId) {
-		if(confirm("您确定要删除这条微博吗？")){
+		if(confirm("您确定要删除这条Eyoo吗？")){
 			$.get("${pageContext.request.contextPath }/deleteeyoo.action?eyooId=" + eyooId,null,function(data){
 				$("#" + eyooId).remove();
 			});

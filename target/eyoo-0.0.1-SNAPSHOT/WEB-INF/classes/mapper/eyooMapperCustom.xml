@@ -62,18 +62,18 @@
 		) OR w.user_id=#{params.userId} ORDER BY w.post_time DESC
 	</select>
 	 
-	<!-- 根据微博id查询微博 -->
+	<!-- 根据Eyooid查询Eyoo -->
 	<select id="queryeyooByeyooId" parameterType="int" resultMap="eyooResultMap">
 		SELECT * FROM eyoo,USER WHERE eyoo.eyoo_id=#{eyooId} AND user.user_id=eyoo.user_id
 	</select>
 
-	<!-- 根据微博id删除微博 -->
+	<!-- 根据Eyooid删除Eyoo -->
 	<delete id="deleteByeyooId" parameterType="int" >
 		delete from eyoo where eyoo_id=#{id}
 	</delete>
 
 
-	<!-- 根据用户id查询微博 附加user昵称 头像 -->
+	<!-- 根据用户id查询Eyoo 附加user昵称 头像 -->
 	<select id="qeuryByUserId" parameterType="Integer" resultMap="eyooResultMap">
 		SELECT 
 		user.nickname,user.face,eyoo.* FROM eyoo,USER
@@ -82,13 +82,13 @@
 		</where>
 	</select>
 
-	<!-- 转发微博 -->
+	<!-- 转发Eyoo -->
 	<insert id="repost" parameterType="po.eyooCustom" keyProperty="eyoo_id" useGeneratedKeys="true">
 		insert into eyoo (user_id,post_time,content,original,repost_id)
 		value(#{userId},#{postTime},#{content},0,#{repostId})
 	</insert>
 
-	<!-- 发微博 -->
+	<!-- 发Eyoo -->
 	<insert id="post" parameterType="po.eyooVo" keyProperty="eyoo_id" useGeneratedKeys="true">
 		insert into eyoo
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -174,21 +174,21 @@
 		</trim>
 	</insert>
 
-	<!-- 查询微博被转发次数 -->
+	<!-- 查询Eyoo被转发次数 -->
 	<select id="queryRepostCount" parameterType="int" resultType="int">
 		SELECT	COUNT(*)
 		FROM eyoo
 		WHERE repost_id = #{eyooId}
 	</select>
 
-	<!-- 查询微博被评论次数 -->
+	<!-- 查询Eyoo被评论次数 -->
 	<select id="queryCommentCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)
 		FROM COMMENT
 		WHERE comment.eyoo_id=#{eyooId}
 	</select>
 	
-	<!-- 查询微博被回复次数 -->
+	<!-- 查询Eyoo被回复次数 -->
 	<select id="queryReplyCount" parameterType="int" resultType="int">
 		SELECT	COUNT(*)
 		FROM reply AS r
@@ -199,14 +199,14 @@
 		)
 	</select>
 	
-	<!-- 查询微博被点赞次数 -->
+	<!-- 查询Eyoo被点赞次数 -->
 	<select id="queryLikeCount" parameterType="int" resultType="int">
 		SELECT	COUNT(*)
 		FROM likes
 		WHERE eyoo_id = #{eyooId}
 	</select>
 
-	<!-- 根据用户id查询被转发的微博 -->
+	<!-- 根据用户id查询被转发的Eyoo -->
 	<select id="queryRepostByUserId" parameterType="int" resultMap="eyooResultMap">
 		SELECT u.nickname, u.face, w.*
 		FROM eyoo AS w, USER AS u
@@ -217,7 +217,7 @@
 		) AND w.user_id = u.user_id ORDER BY w.post_time DESC
 	</select>
 
-	<!-- 根据关键字搜索微博 -->
+	<!-- 根据关键字搜索Eyoo -->
 	<select id="queryeyooByWord" parameterType="String" resultMap="eyooResultMap">
 	SELECT user.nickname,user.face,eyoo.*
 	FROM eyoo,USER

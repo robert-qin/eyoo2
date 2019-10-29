@@ -75,7 +75,7 @@ public class LikesServiceImpl implements LikesService {
 
 	}
 
-	// 查询我赞过的微博
+	// 查询我赞过的Eyoo
 	@SuppressWarnings("static-access")
 	@Override
 	public Page<LikesCustom> queryLikedeyooSelf(Integer userId, int pageNo) {

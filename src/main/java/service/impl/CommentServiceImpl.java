@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
 		return commentMapperCustom.qeuryCountReply(commentId);
 	}
 
-	// 根据id删除微博
+	// 根据id删除Eyoo
 	@Override
 	public void deleteCommentById(int commentId) throws Exception {
 		commentMapperCustom.deleteCommentById(commentId);

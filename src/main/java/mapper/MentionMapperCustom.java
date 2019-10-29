@@ -19,7 +19,7 @@ public interface MentionMapperCustom {
 	// 查询赞量
 	int queryLikeCount(int userId);
 
-	// 更新与我相关-微博转发数
+	// 更新与我相关-Eyoo转发数
 	void updateRepost(MentionCustom mentionCustom);
 
 	// 更新与我相关-评论数

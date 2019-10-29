@@ -21,7 +21,7 @@ http://www.templatemo.com/preview/templatemo_415_dashboard
   <div id="main-wrapper">
     <div class="navbar navbar-inverse" role="navigation">
       <div class="navbar-header">
-        <div class="logo"><h1>微博后台管理</h1></div>
+        <div class="logo"><h1>Eyoo后台管理</h1></div>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -36,7 +36,7 @@ http://www.templatemo.com/preview/templatemo_415_dashboard
           <li><a href="index.html"><i class="fa fa-home"></i>概览</a></li>
           <li class="sub">
             <a href="javascript:;">
-              <i class="fa fa-database"></i>微博管理<div class="pull-right"><span class="caret"></span></div>
+              <i class="fa fa-database"></i>Eyoo管理<div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
               <li><a href="#">Interdum</a></li>

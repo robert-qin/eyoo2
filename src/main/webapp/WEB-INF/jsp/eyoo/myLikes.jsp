@@ -86,7 +86,7 @@
 			<br> <br>
 			<table align="center" style="table-layout: fixed;">
 				<tr>
-					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }微博&nbsp;</a></td>
+					<td><a href="queryUserPage.action?userId=${user.userId}">${user.eyooCount }Eyoo&nbsp;</a></td>
 					<td><a href="listFollow.action?userId=${user.userId }">${user.followCount }关注&nbsp;</a></td>
 					<td><a href="listFans.action?userId=${user.userId }">${user.fansCount }粉丝</td>
 				</tr>
@@ -111,7 +111,7 @@
 			</ul>
 		</div>
 
-		<!-- 微博内容 -->
+		<!-- Eyoo内容 -->
 		<div style="width: 70%; float: left;">
 			<!-- 标题 -->
 			<div class="container" style="width: auto; background-color: #fff;">
@@ -148,7 +148,7 @@
 						<div style="text-align: left; margin-left: 85px">
 							<p style="color: #333; font-size: 17px">${like.eyoo.content }</p>
 						</div>
-						<!-- 原创微博 -->
+						<!-- 原创Eyoo -->
 						<c:if test="${like.eyoo.original == 1 }">
 							<!-- 图片 -->
 							<div class="example"
@@ -201,7 +201,7 @@
 						</c:if>
 					</div>
 
-					<!-- 非原创 转发微博 -->
+					<!-- 非原创 转发Eyoo -->
 					<c:if test="${like.eyoo.original == 0 }">
 						<!-- 头部 -->
 						<div class="container"
@@ -335,7 +335,7 @@
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="myModalLabel" style="color: #987">转发这条微博</h4>
+									<h4 class="modal-title" id="myModalLabel" style="color: #987">转发这条Eyoo</h4>
 								</div>
 								<div class="modal-body">
 									<c:if test="${like.eyoo.original == 0 }">
@@ -368,7 +368,7 @@
 							<textarea class="content comment-input "
 								placeholder="等待输入......." onkeyup="keyUP(this) "></textarea>
 							<a href="javascript:; " class="plBtn ">评论</a>
-							<!-- 微博id -->
+							<!-- Eyooid -->
 							<input type="hidden" value="${like.eyoo.eyooId}" class="eyooId">
 						</div>
 						<!--评论区域 end-->
@@ -424,7 +424,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	//转发微博
+	//转发Eyoo
 	function repost(eyooId) {
 		$('#Modal'+eyooId).modal('toggle');
 	}
@@ -440,7 +440,7 @@
 		window.location=url;
 	}
 	
-	//跳至所选微博页
+	//跳至所选Eyoo页
 	function clickeyoo(eyooId) {
 		var url = "singleeyoo.action?eyooId=" + eyooId;
 		window.open(url);

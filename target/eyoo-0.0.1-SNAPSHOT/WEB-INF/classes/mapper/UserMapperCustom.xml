@@ -83,7 +83,7 @@
 		user_id = #{userCustom.userId}
 	</update>
 
-	<!-- 微博数 -->
+	<!-- Eyoo数 -->
 	<select id="queryeyooCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)
 		FROM eyoo

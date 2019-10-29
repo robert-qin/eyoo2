@@ -9,7 +9,7 @@ import po.eyooVo;
 
 public interface eyooMapperCustom {
 
-	// 遍历所有微博
+	// 遍历所有Eyoo
 	// public List<eyooCustom> queryAlleyoo() throws Exception;
 
 	// 分页遍历——实时
@@ -22,19 +22,19 @@ public interface eyooMapperCustom {
 	public List<eyooCustom> queryAlleyooFriends(Page<eyooCustom> page) throws Exception;
 
 	
-	// 根据用户id查询微博
+	// 根据用户id查询Eyoo
 	public List<eyooCustom> qeuryByUserId(Page<eyooCustom> page) throws Exception;
 
-	// 发微博
+	// 发Eyoo
 	public void post(eyooVo eyooVo) throws Exception;
 
-	// 根据微博id删除微博
+	// 根据Eyooid删除Eyoo
 	public void deleteByeyooId(Integer eyooId) throws Exception;
 
-	// 根据微博id查询微博
+	// 根据Eyooid查询Eyoo
 	public List<eyooCustom> queryeyooByeyooId(Integer eyooId) throws Exception;
 
-	// 转发微博
+	// 转发Eyoo
 	public void repost(eyooCustom eyoo) throws Exception;
 
 	// 查询赞次数
@@ -46,10 +46,10 @@ public interface eyooMapperCustom {
 	// 查询评论次数
 	public int queryCommentCount(Integer eyooId);
 
-	// 根据用户id查询被转发的微博
+	// 根据用户id查询被转发的Eyoo
 	public List<eyooCustom> queryRepostByUserId(Page<eyooCustom> page);
 
-	// 根据关键字搜索微博
+	// 根据关键字搜索Eyoo
 	public List<eyooCustom> queryeyooByWord(Page<eyooCustom> page);
 
 	// 查询回复次数

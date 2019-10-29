@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>微博详情</title>
+<title>Eyoo详情</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -97,7 +97,7 @@
 				</table>
 			</div>
 		</div>
-		<!-- 非原创 转发微博 -->
+		<!-- 非原创 转发Eyoo -->
 			<c:if test="${eyoo.original == 0 }">
 				<!-- 头部 -->
 				<div class="container"
@@ -198,7 +198,7 @@
 					<textarea class="content comment-input"
 						placeholder="评论吧！！！！！！！！！！！！" onkeyup="keyUP(this)"></textarea>
 					<a href="javascript:;" class="plBtn">评论</a>
-					<!-- 微博id -->
+					<!-- Eyooid -->
 					<input type="hidden" value="${eyoo.eyooId}" class="eyooId">
 				</div>
 				<!--评论区域 end-->

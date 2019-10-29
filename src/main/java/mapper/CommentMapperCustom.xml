@@ -37,7 +37,7 @@
 		VALUE(#{userId},#{eyooId},#{commentTime},#{commentContent})
 	</insert>
 
-	<!-- 查询微博Id的评论 -->
+	<!-- 查询EyooId的评论 -->
 	<select id="queryComment" parameterType="int" resultMap="CommentResultMap">
 		SELECT b.user_id,a.face,b.comment_id,a.face,b.comment_content,b.comment_time,a.nickname 
 		FROM USER AS a , COMMENT AS b

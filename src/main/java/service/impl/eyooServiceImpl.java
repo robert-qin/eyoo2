@@ -18,7 +18,7 @@ public class eyooServiceImpl implements eyooService {
 	private eyooMapperCustom eyooMapperCustom;
 
 
-	// 根据用户id查询微博列表
+	// 根据用户id查询Eyoo列表
 	@Override
 	public Page<eyooCustom> qeuryByUserId(Integer userId, int pageNo) throws Exception {
 		Page<eyooCustom> page = new Page<eyooCustom>();
@@ -31,25 +31,25 @@ public class eyooServiceImpl implements eyooService {
 		return page;
 	}
 
-	// 发送微博
+	// 发送Eyoo
 	@Override
 	public void post(eyooVo eyooVo) throws Exception {
 		eyooMapperCustom.post(eyooVo);
 	}
 
-	// 删除微博
+	// 删除Eyoo
 	@Override
 	public void deleteByeyooId(Integer eyooId) throws Exception {
 		eyooMapperCustom.deleteByeyooId(eyooId);
 	}
 
-	// 根据微博id查询微博
+	// 根据Eyooid查询Eyoo
 	@Override
 	public List<eyooCustom> queryeyooByeyooId(Integer eyooId) throws Exception {
 		return eyooMapperCustom.queryeyooByeyooId(eyooId);
 	}
 
-	// 转发微博
+	// 转发Eyoo
 	@Override
 	public void repost(eyooCustom eyoo) throws Exception {
 		eyooMapperCustom.repost(eyoo);
@@ -74,7 +74,7 @@ public class eyooServiceImpl implements eyooService {
 		return eyooMapperCustom.queryCommentCount(eyooId)+eyooMapperCustom.queryReplyCount(eyooId);
 	}
 
-	// 根据用户id查询被转发的微博
+	// 根据用户id查询被转发的Eyoo
 	@Override
 	public Page<eyooCustom> queryRepostByUserId(Page<eyooCustom> page) {
 		
@@ -83,7 +83,7 @@ public class eyooServiceImpl implements eyooService {
 		return page;
 	}
 
-	// 首页遍历微博——实时
+	// 首页遍历Eyoo——实时
 	@Override
 	public Page<eyooCustom> queryAlleyooNow(int pageNo) throws Exception {
 		Page<eyooCustom> page = new Page<eyooCustom>();
@@ -95,7 +95,7 @@ public class eyooServiceImpl implements eyooService {
 		return page;
 	}
 
-	// 首页遍历微博——好友圈	
+	// 首页遍历Eyoo——好友圈
 	@Override
 	public Page<eyooCustom> queryAlleyooFriends(int userId, int pageNo) throws Exception {
 		Page<eyooCustom> page = new Page<eyooCustom>();
@@ -109,7 +109,7 @@ public class eyooServiceImpl implements eyooService {
 		return page;
 	}
 
-	// 首页遍历微博——首页	
+	// 首页遍历Eyoo——首页
 	@Override
 	public Page<eyooCustom> queryAlleyooFollow(Integer userId, int pageNo) throws Exception {
 		Page<eyooCustom> page = new Page<eyooCustom>();
@@ -122,7 +122,7 @@ public class eyooServiceImpl implements eyooService {
 		return page;
 	}
 
-	// 根据关键字搜索微博
+	// 根据关键字搜索Eyoo
 	@Override
 	public Page<eyooCustom> queryeyooByWord(String keyWord, int pageNo) throws Exception {
 		Page<eyooCustom> page = new Page<eyooCustom>();

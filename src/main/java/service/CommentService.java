@@ -11,7 +11,7 @@ public interface CommentService {
 	// 评论
 	void addComment(CommentCustom commentCustom) throws Exception;
 
-	// 查询微博下的评论
+	// 查询Eyoo下的评论
 	List<CommentCustom> queryComment(int eyooId) throws Exception;
 
 	// 查询评论下回复数

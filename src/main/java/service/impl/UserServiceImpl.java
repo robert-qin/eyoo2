@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		userMapperCustom.updateByUserId(userVo);
 	}
 
-	// 根据用户id查询用户的微博数
+	// 根据用户id查询用户的Eyoo数
 	@Override
 	public int queryeyooCount(Integer userId) throws Exception {
 		return userMapperCustom.queryeyooCount(userId);

@@ -161,7 +161,7 @@ public class UserController {
 			user.setP(userService.queryPC(user.getProvince()));
 			user.setC(userService.queryPC(user.getCity()));
 
-			// 微博数wi
+			// Eyoo数wi
 			int eyooCount = userService.queryeyooCount(user.getUserId());
 			// 关注
 			int followCount = userService.queryFollowCount(user.getUserId());
@@ -222,7 +222,7 @@ public class UserController {
 		if (user_face != null && originalFilename != null && originalFilename.length() > 0) {
 
 			// 存储图片的物理路径
-			String pic_path = "D:\\Eyoo\\src\\main\\resources\\img";
+			String pic_path = "D:\\eyoo2\\src\\main\\resources\\img\\";
 
 			// 新的图片名称
 			String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -247,7 +247,7 @@ public class UserController {
 		user.setMentionCustom(mention);
 		// 用户年龄
 		user.setAge(userService.calculateAge(user.getBir()));
-		// 微博数wi
+		// Eyoo数wi
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
@@ -321,7 +321,7 @@ public class UserController {
 		for (eyooCustom eyooCustom : page.getResults()) {
 			// 将date格式化 精确到s
 			eyooCustom.setDate(dateConvert.convert2s(eyooCustom.getPostTime()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyooCustom.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -363,11 +363,11 @@ public class UserController {
 		int relation = relationService.queryRelation(user.getUserId(), others.getUserId());
 		model.addAttribute("relation", relation);
 
-		// 遍历微博
+		// 遍历Eyoo
 		Page<eyooCustom> page = eyooService.qeuryByUserId(userId,pageNo);
 		for (eyooCustom eyooCustom : page.getResults()) {
 			eyooCustom.setDate(dateConvert.convert2s(eyooCustom.getPostTime()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyooCustom.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -375,7 +375,7 @@ public class UserController {
 			}
 		}
 		model.addAttribute("eyooList", page.getResults());
-		// 微博数
+		// Eyoo数
 		int eyooCount = userService.queryeyooCount(userId);
 		// 关注
 		int followCount = userService.queryFollowCount(userId);

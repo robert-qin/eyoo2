@@ -70,26 +70,26 @@ public class eyooController {
 	// date格式化工具类
 	private DateConvert dateConvert;
 
-	// 独立微博页面 详细评论页
+	// 独立Eyoo页面 详细评论页
 	@SuppressWarnings("all")
 	@RequestMapping(value = "/singleeyoo")
 	public void singleeyoo(HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("eyooId") Integer eyooId) throws Exception {
 		//
 		User user = (User) session.getAttribute("user");
-		// 微博数
+		// Eyoo数
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
 		// 粉丝
 		int fansCount = userService.queryFansCount(user.getUserId());
 
-		// 微博主体
+		// Eyoo主体
 		List<eyooCustom> eyooList = eyooService.queryeyooByeyooId(eyooId);
 		eyooCustom eyoo = eyooList.get(0);
 		eyoo.setDate(dateConvert.convert2s(eyoo.getPostTime()));
 
-		// 非原创 即属于转发微博
+		// 非原创 即属于转发Eyoo
 		if (eyoo.getOriginal() == 0) {
 			eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyoo.getRepostId()).get(0);
 			reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -118,19 +118,19 @@ public class eyooController {
 
 	}
 
-	// 删除微博
+	// 删除Eyoo
 	@RequestMapping(value = "deleteeyoo", method = RequestMethod.GET)
 	public void deleteeyoo(@RequestParam("eyooId") Integer eyooId, HttpServletResponse response,
 			HttpServletRequest request) throws Exception {
 		eyooService.deleteByeyooId(eyooId);
 	}
 
-	// 转发微博
+	// 转发Eyoo
 	@RequestMapping(value = "repost")
 	public String repost(HttpSession session, @RequestParam("repostId") int repostId,
 			@RequestParam("repostContent") String repostContent) throws Exception {
 
-		// 微博扩展类
+		// Eyoo扩展类
 		eyooCustom eyoo = new eyooCustom();
 
 		// userId
@@ -151,7 +151,7 @@ public class eyooController {
 		return "redirect:queryAlleyooNow.action?pageNo=1";
 	}
 
-	// 发送微博
+	// 发送Eyoo
 	@RequestMapping(value = "post")
 	public String post(HttpServletRequest request, HttpSession session, Model model, eyooVo eyooVo) throws Exception {
 		int count = 0;
@@ -213,7 +213,7 @@ public class eyooController {
 		if (file != null && originalFilename != null && originalFilename.length() > 0) {
 
 			// 存储图片的物理路径
-			String pic_path = "imgUpload";
+			String pic_path = "D:\\eyoo2\\src\\main\\resources\\img\\";
 
 			// 新的图片名称
 			String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -274,7 +274,7 @@ public class eyooController {
 		return json.toString();
 	}
 
-	// 遍历所有微博 实时
+	// 遍历所有Eyoo 实时
 	@SuppressWarnings("static-access")
 	@RequestMapping(value = "queryAlleyooNow")
 	public String queryAlleyooNow(HttpSession session, Model model, @RequestParam("pageNo") int pageNo)
@@ -288,7 +288,7 @@ public class eyooController {
 			pageNo = 1;
 		}
 		//
-		// 遍历出微博列表
+		// 遍历出Eyoo列表
 		Page<eyooCustom> page = eyooService.queryAlleyooNow(pageNo);
 		for (eyooCustom eyooCustom : page.getResults()) {
 			// 将date格式化 精确到s
@@ -300,11 +300,11 @@ public class eyooController {
 			// 用户是否收藏
 			eyooCustom.setCollect(collectService.isCollect(user.getUserId(), eyooCustom.geteyooId()));
 
-			// 查询微博转发 评论 点赞次数
+			// 查询Eyoo转发 评论 点赞次数
 			eyooCustom.setRepostCount(eyooService.queryRepostCount(eyooCustom.geteyooId()));
 			eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyooCustom.setLikeCount(eyooService.queryLikeCount(eyooCustom.geteyooId()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyooCustom.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -315,7 +315,7 @@ public class eyooController {
 		MentionCustom mention = mentionService.queryLastMention(user.getUserId());
 		user.setMentionCustom(mention);
 
-		// 微博数wi
+		// Eyoo数wi
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
@@ -341,7 +341,7 @@ public class eyooController {
 
 	}
 
-	// 遍历所有微博 好友圈
+	// 遍历所有Eyoo 好友圈
 	@SuppressWarnings("static-access")
 	@RequestMapping(value = "queryAlleyooFriends")
 	public String queryAlleyooFriends(HttpSession session, Model model, @RequestParam("pageNo") int pageNo)
@@ -355,7 +355,7 @@ public class eyooController {
 			pageNo = 1;
 		}
 		//
-		// 遍历出微博列表
+		// 遍历出Eyoo列表
 		Page<eyooCustom> page = eyooService.queryAlleyooFriends(user.getUserId(), pageNo);
 		for (eyooCustom eyooCustom : page.getResults()) {
 			// 将date格式化 精确到s
@@ -367,11 +367,11 @@ public class eyooController {
 			// 用户是否收藏
 			eyooCustom.setCollect(collectService.isCollect(user.getUserId(), eyooCustom.geteyooId()));
 
-			// 查询微博转发 评论 点赞次数
+			// 查询Eyoo转发 评论 点赞次数
 			eyooCustom.setRepostCount(eyooService.queryRepostCount(eyooCustom.geteyooId()));
 			eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyooCustom.setLikeCount(eyooService.queryLikeCount(eyooCustom.geteyooId()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyooCustom.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -382,7 +382,7 @@ public class eyooController {
 		MentionCustom mention = mentionService.queryLastMention(user.getUserId());
 		user.setMentionCustom(mention);
 
-		// 微博数wi
+		// Eyoo数wi
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
@@ -408,7 +408,7 @@ public class eyooController {
 
 	}
 
-	// 遍历所有微博 首页
+	// 遍历所有Eyoo 首页
 	@SuppressWarnings("static-access")
 	@RequestMapping(value = "queryAlleyooFollow")
 	public String queryAlleyooFollow(HttpSession session, Model model, @RequestParam("pageNo") int pageNo)
@@ -422,7 +422,7 @@ public class eyooController {
 			pageNo = 1;
 		}
 		//
-		// 遍历出微博列表 首页
+		// 遍历出Eyoo列表 首页
 		Page<eyooCustom> page = eyooService.queryAlleyooFollow(user.getUserId(), pageNo);
 		for (eyooCustom eyooCustom : page.getResults()) {
 			// 将date格式化 精确到s
@@ -434,11 +434,11 @@ public class eyooController {
 			// 用户是否收藏
 			eyooCustom.setCollect(collectService.isCollect(user.getUserId(), eyooCustom.geteyooId()));
 
-			// 查询微博转发 评论 点赞次数
+			// 查询Eyoo转发 评论 点赞次数
 			eyooCustom.setRepostCount(eyooService.queryRepostCount(eyooCustom.geteyooId()));
 			eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyooCustom.setLikeCount(eyooService.queryLikeCount(eyooCustom.geteyooId()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyooCustom.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -449,7 +449,7 @@ public class eyooController {
 		MentionCustom mention = mentionService.queryLastMention(user.getUserId());
 		user.setMentionCustom(mention);
 
-		// 微博数wi
+		// Eyoo数wi
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());
@@ -475,7 +475,7 @@ public class eyooController {
 
 	}
 
-	// 根据关键字搜索相关微博
+	// 根据关键字搜索相关Eyoo
 	@RequestMapping(value = "queryeyooByWord")
 	public String queryeyooByWord(
 			Model model,
@@ -484,7 +484,7 @@ public class eyooController {
 			@RequestParam("pageNo") int pageNo) throws Exception {
 		// 当前用户信息
 		UserCustom user = (UserCustom) session.getAttribute("user");
-		// 遍历出微博列表 首页
+		// 遍历出Eyoo列表 首页
 		Page<eyooCustom> page = eyooService.queryeyooByWord(keyWord, pageNo);
 		for (eyooCustom eyooCustom : page.getResults()) {
 			// 将date格式化 精确到s
@@ -496,11 +496,11 @@ public class eyooController {
 			// 用户是否收藏
 			eyooCustom.setCollect(collectService.isCollect(user.getUserId(), eyooCustom.geteyooId()));
 
-			// 查询微博转发 评论 点赞次数
+			// 查询Eyoo转发 评论 点赞次数
 			eyooCustom.setRepostCount(eyooService.queryRepostCount(eyooCustom.geteyooId()));
 			// eyooCustom.setCommentCount(eyooService.queryCommentCount(eyooCustom.geteyooId()));
 			eyooCustom.setLikeCount(eyooService.queryLikeCount(eyooCustom.geteyooId()));
-			// 非原创 即属于转发微博
+			// 非原创 即属于转发Eyoo
 			if (eyooCustom.getOriginal() == 0) {
 				eyooCustom reposteyoo = eyooService.queryeyooByeyooId(eyooCustom.getRepostId()).get(0);
 				reposteyoo.setDate(dateConvert.convert2s(reposteyoo.getPostTime()));
@@ -511,7 +511,7 @@ public class eyooController {
 		MentionCustom mention = mentionService.queryLastMention(user.getUserId());
 		user.setMentionCustom(mention);
 
-		// 微博数wi
+		// Eyoo数wi
 		int eyooCount = userService.queryeyooCount(user.getUserId());
 		// 关注
 		int followCount = userService.queryFollowCount(user.getUserId());

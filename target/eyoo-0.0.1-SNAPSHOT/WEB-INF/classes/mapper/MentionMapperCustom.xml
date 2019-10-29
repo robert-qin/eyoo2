@@ -16,7 +16,7 @@
 		SELECT * FROM mention WHERE user_id = #{userId}
 	</select>
 
-	<!-- 根据用户id查询所发微博的转发量 -->
+	<!-- 根据用户id查询所发Eyoo的转发量 -->
 	<select id="queryRepostCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) 
 		FROM eyoo
@@ -25,7 +25,7 @@
 		)
 	</select>
 
-	<!-- 根据用户id查询所发微博的评论量 -->
+	<!-- 根据用户id查询所发Eyoo的评论量 -->
 	<select id="queryCommentCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) 
 		FROM COMMENT 
@@ -50,21 +50,21 @@
 		)
 	</select>
 	
-	<!-- 更新与我相关——微博转发数 -->
+	<!-- 更新与我相关——Eyoo转发数 -->
 	<update id="updateRepost" parameterType="po.MentionCustom">
 		UPDATE mention AS m
 		SET m.repostCount=#{repostcount}
 		WHERE m.user_id=#{userId}
 	</update>
 	
-	<!-- 更新与我相关——微博评论数 -->
+	<!-- 更新与我相关——Eyoo评论数 -->
 	<update id="updateComment" parameterType="po.MentionCustom">
 		UPDATE mention AS m
 		SET m.commentCount=#{commentcount}
 		WHERE m.user_id=#{userId}
 	</update>
 
-	<!-- 更新与我相关——微博赞数 -->
+	<!-- 更新与我相关——Eyoo赞数 -->
 	<update id="updateLikes" parameterType="po.MentionCustom">
 		UPDATE mention AS m
 		SET m.likeCount=#{likecount}

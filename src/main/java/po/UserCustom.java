@@ -23,7 +23,7 @@ public class UserCustom extends User {
 	// 市
 	private String c;
 
-	// 微博数
+	// Eyoo数
 	private int eyooCount;
 	// 关注数
 	private int followCount;
