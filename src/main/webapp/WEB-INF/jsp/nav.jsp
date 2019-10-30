@@ -23,7 +23,7 @@
 		var url = "${pageContext.request.contextPath }/queryUserByWord.action?keyWord="
 				+ keyWord;
 		if (keyWord == "") {
-			alert("什么都没有 找个鸡儿");
+			alert("暂无该用户，赶紧去抢注！");
 		} else {
 			window.location = url;
 		}
