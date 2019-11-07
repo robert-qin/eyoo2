@@ -1,101 +1,138 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50536
-Source Host           : localhost:3306
-Source Database       : eyoo-demo
+ Source Server         : MySQL
+ Source Server Type    : MySQL
+ Source Server Version : 80016
+ Source Host           : localhost:3306
+ Source Schema         : weibo
 
-Target Server Type    : MYSQL
-Target Server Version : 50536
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 80016
+ File Encoding         : 65001
 
-Date: 2018-07-14 00:39:13
+ Date: 07/11/2019 20:37:54
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for admin
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
+CREATE TABLE `admin`  (
   `admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
-  UNIQUE KEY `admin_id` (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  UNIQUE INDEX `admin_id`(`admin_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('1', 'admin', 'admin');
+INSERT INTO `admin` VALUES (1, 'admin', 'admin');
 
 -- ----------------------------
 -- Table structure for collect
 -- ----------------------------
 DROP TABLE IF EXISTS `collect`;
-CREATE TABLE `collect` (
+CREATE TABLE `collect`  (
   `collect_id` int(11) NOT NULL AUTO_INCREMENT,
-  `eyoo_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `collect_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`collect_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of collect
--- ----------------------------
+  `eyoo_id` int(11) NULL DEFAULT NULL,
+  `user_id` int(11) NULL DEFAULT NULL,
+  `collect_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`collect_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
-CREATE TABLE `comment` (
+CREATE TABLE `comment`  (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `eyoo_id` int(11) DEFAULT NULL COMMENT 'Eyooid',
-  `comment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '评论时间',
-  `comment_content` varchar(100) NOT NULL COMMENT '评论内容',
-  PRIMARY KEY (`comment_id`),
-  KEY `FK_sendcom` (`user_id`),
-  KEY `FK_getcom` (`eyoo_id`),
-  CONSTRAINT `FK_getcom` FOREIGN KEY (`eyoo_id`) REFERENCES `eyoo` (`eyoo_id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_sendcom` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '用户id',
+  `eyoo_id` int(11) NULL DEFAULT NULL COMMENT '微博id',
+  `comment_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '评论时间',
+  `comment_content` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论内容',
+  PRIMARY KEY (`comment_id`) USING BTREE,
+  INDEX `FK_sendcom`(`user_id`) USING BTREE,
+  INDEX `FK_getcom`(`eyoo_id`) USING BTREE,
+  CONSTRAINT `FK_getcom` FOREIGN KEY (`eyoo_id`) REFERENCES `eyoo` (`eyoo_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `FK_sendcom` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 74 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
+INSERT INTO `comment` VALUES (73, 24, 148, '2019-10-29 21:20:14', '你是猪吗');
+
+-- ----------------------------
+-- Table structure for eyoo
+-- ----------------------------
+DROP TABLE IF EXISTS `eyoo`;
+CREATE TABLE `eyoo`  (
+  `eyoo_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微博id',
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '用户id',
+  `post_time` datetime(0) NULL DEFAULT NULL COMMENT '发送时间',
+  `content` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文字内容',
+  `pic1` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic2` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic3` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic4` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic5` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic6` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic7` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic8` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `pic9` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `original` int(11) NULL DEFAULT NULL,
+  `repost_id` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`eyoo_id`) USING BTREE,
+  INDEX `FK_Relationship_1`(`user_id`) USING BTREE,
+  CONSTRAINT `FK_Relationship_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 151 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of eyoo
+-- ----------------------------
+INSERT INTO `eyoo` VALUES (138, 23, '2019-10-25 15:15:02', '', 'default.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (139, 23, '2019-10-25 16:07:57', '', 'default.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (140, 23, '2019-10-25 16:08:01', '', 'default.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (141, 23, '2019-10-25 16:08:18', '即可很快就会哭', 'default.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (142, 23, '2019-10-28 13:57:43', '流猪猪', 'default.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (143, 23, '2019-10-29 17:52:54', '猪猪', '7f2ff296-20f0-4a3b-b210-e01408627b1e.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (144, 23, '2019-10-29 19:14:50', '', 'd7c9387e-6739-4b76-940c-15737a1cc01b.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (145, 23, '2019-10-29 20:57:32', '', 'df24476a-cebc-49b4-88f6-d8c975f0ea71.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (146, 23, '2019-10-29 21:07:13', '', '8d70d97f-5eda-42e9-9dce-a5dc3b69ead3.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (147, 23, '2019-10-29 21:13:04', '', 'e3a92cf7-877d-4b3a-9fe0-679b12b4bfbe.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (148, 23, '2019-10-29 21:17:00', '', '69b38782-e235-4350-b60b-f7363e327bd8.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (149, 25, '2019-10-29 22:35:22', '故事的小黄fa', '37250d03-08a6-406d-a2b9-1c9aaefc6bc2.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `eyoo` VALUES (150, 23, '2019-11-07 12:40:07', '', '03875c96-5c08-4c40-b03b-88bdc1270574.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL);
 
 -- ----------------------------
 -- Table structure for likes
 -- ----------------------------
 DROP TABLE IF EXISTS `likes`;
-CREATE TABLE `likes` (
+CREATE TABLE `likes`  (
   `likes_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `eyoo_id` int(11) DEFAULT NULL,
-  `like_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`likes_id`),
-  KEY `FK_sendlikes` (`user_id`),
-  KEY `FK_getlikes` (`eyoo_id`),
-  CONSTRAINT `FK_getlikes` FOREIGN KEY (`eyoo_id`) REFERENCES `eyoo` (`eyoo_id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_sendlikes` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of likes
--- ----------------------------
+  `user_id` int(11) NULL DEFAULT NULL,
+  `eyoo_id` int(11) NULL DEFAULT NULL,
+  `like_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`likes_id`) USING BTREE,
+  INDEX `FK_sendlikes`(`user_id`) USING BTREE,
+  INDEX `FK_getlikes`(`eyoo_id`) USING BTREE,
+  CONSTRAINT `FK_getlikes` FOREIGN KEY (`eyoo_id`) REFERENCES `eyoo` (`eyoo_id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `FK_sendlikes` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 148 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for location
 -- ----------------------------
 DROP TABLE IF EXISTS `location`;
-CREATE TABLE `location` (
-  `id` varchar(50) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `location`  (
+  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of location
@@ -525,105 +562,81 @@ INSERT INTO `location` VALUES ('3213', '伊犁');
 -- Table structure for mention
 -- ----------------------------
 DROP TABLE IF EXISTS `mention`;
-CREATE TABLE `mention` (
+CREATE TABLE `mention`  (
   `mention_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `repostCount` int(11) DEFAULT NULL,
-  `commentCount` int(11) DEFAULT NULL,
-  `replyCount` int(11) DEFAULT NULL,
-  `likeCount` int(11) DEFAULT NULL,
-  `fansCount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`mention_id`),
-  KEY `FK_at` (`user_id`),
-  CONSTRAINT `FK_at` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `repostCount` int(11) NULL DEFAULT NULL,
+  `commentCount` int(11) NULL DEFAULT NULL,
+  `replyCount` int(11) NULL DEFAULT NULL,
+  `likeCount` int(11) NULL DEFAULT NULL,
+  `fansCount` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`mention_id`) USING BTREE,
+  INDEX `FK_at`(`user_id`) USING BTREE,
+  CONSTRAINT `FK_at` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mention
 -- ----------------------------
+INSERT INTO `mention` VALUES (11, 23, 0, 1, 0, 0, 1);
+INSERT INTO `mention` VALUES (12, 24, 0, 0, 0, 0, 0);
+INSERT INTO `mention` VALUES (13, 25, 0, 0, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for relation
 -- ----------------------------
 DROP TABLE IF EXISTS `relation`;
-CREATE TABLE `relation` (
+CREATE TABLE `relation`  (
   `relation_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NULL DEFAULT NULL,
   `followid` int(11) NOT NULL,
   `state` int(11) NOT NULL,
-  PRIMARY KEY (`relation_id`),
-  KEY `FK_follow` (`user_id`),
-  CONSTRAINT `FK_follow` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`relation_id`) USING BTREE,
+  INDEX `FK_follow`(`user_id`) USING BTREE,
+  CONSTRAINT `FK_follow` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 134 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of relation
 -- ----------------------------
+INSERT INTO `relation` VALUES (133, 25, 23, 1);
 
 -- ----------------------------
 -- Table structure for reply
 -- ----------------------------
 DROP TABLE IF EXISTS `reply`;
-CREATE TABLE `reply` (
+CREATE TABLE `reply`  (
   `reply_id` int(11) NOT NULL AUTO_INCREMENT,
-  `comment_id` int(11) DEFAULT NULL,
-  `from_id` int(11) DEFAULT NULL,
-  `to_id` int(11) DEFAULT NULL,
-  `reply_content` varchar(100) DEFAULT NULL,
-  `time` datetime DEFAULT NULL,
-  PRIMARY KEY (`reply_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of reply
--- ----------------------------
+  `comment_id` int(11) NULL DEFAULT NULL,
+  `from_id` int(11) NULL DEFAULT NULL,
+  `to_id` int(11) NULL DEFAULT NULL,
+  `reply_content` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`reply_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 133 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+CREATE TABLE `user`  (
   `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `username` varchar(50) NOT NULL COMMENT '用户名',
-  `password` varchar(50) NOT NULL COMMENT '密码',
-  `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
-  `face` varchar(50) DEFAULT NULL COMMENT '头像',
-  `sex` int(11) DEFAULT NULL COMMENT '性别',
-  `bir` date DEFAULT NULL COMMENT '出生日期',
-  `province` varchar(10) DEFAULT NULL COMMENT '省',
-  `city` varchar(10) DEFAULT NULL COMMENT '市',
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名',
+  `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
+  `nickname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
+  `face` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+  `sex` int(11) NULL DEFAULT NULL COMMENT '性别',
+  `bir` date NULL DEFAULT NULL COMMENT '出生日期',
+  `province` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '省',
+  `city` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '市',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES (23, 'liudong', '123', 'liudong', '2d54e48e-6b8d-4d25-8b45-ad69b2e9f9c5.jpg', 0, '2018-06-06', '20', '2008');
+INSERT INTO `user` VALUES (24, 'liudong1', '123', 'liudong1', 'default.png', 1, '2018-06-06', '00', '00');
+INSERT INTO `user` VALUES (25, 'gushidexiaohuangfa', '195815', 'gushidexiaohuangfa', 'dfecc5a2-d5cc-4c32-9908-efa90f7b4ce3.jpeg', 1, '2018-06-06', '0', '0');
 
--- ----------------------------
--- Table structure for eyoo
--- ----------------------------
-DROP TABLE IF EXISTS `eyoo`;
-CREATE TABLE `eyoo` (
-  `eyoo_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Eyooid',
-  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `post_time` datetime DEFAULT NULL COMMENT '发送时间',
-  `content` varchar(100) NOT NULL COMMENT '文字内容',
-  `pic1` varchar(50) DEFAULT NULL,
-  `pic2` varchar(50) DEFAULT NULL,
-  `pic3` varchar(50) DEFAULT NULL,
-  `pic4` varchar(50) DEFAULT NULL,
-  `pic5` varchar(50) DEFAULT NULL,
-  `pic6` varchar(50) DEFAULT NULL,
-  `pic7` varchar(50) DEFAULT NULL,
-  `pic8` varchar(50) DEFAULT NULL,
-  `pic9` varchar(50) DEFAULT NULL,
-  `original` int(11) DEFAULT NULL,
-  `repost_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`eyoo_id`),
-  KEY `FK_Relationship_1` (`user_id`),
-  CONSTRAINT `FK_Relationship_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of eyoo
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;
