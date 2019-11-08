@@ -222,7 +222,7 @@ public class UserController {
 		if (user_face != null && originalFilename != null && originalFilename.length() > 0) {
 
 			// 存储图片的物理路径
-			String pic_path = "D:\\eyoo2\\src\\main\\resources\\img\\";
+			String pic_path = "/usr/local/tomcat/apache-tomcat-9.0.27/webapps/eyoo/images/";
 
 			// 新的图片名称
 			String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));

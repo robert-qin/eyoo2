@@ -213,7 +213,7 @@ public class eyooController {
 		if (file != null && originalFilename != null && originalFilename.length() > 0) {
 
 			// 存储图片的物理路径
-			String pic_path = "D:\\eyoo2\\src\\main\\resources\\img\\";
+			String pic_path = "/usr/local/tomcat/apache-tomcat-9.0.27/webapps/eyoo/images/";
 
 			// 新的图片名称
 			String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -258,6 +258,7 @@ public class eyooController {
 			}
 			// 新图片
 			File newFile = new File(pic_path + newFileName);
+			System.out.println("路---------"+pic_path + newFileName);
 
 			// 将内存中的数据写入磁盘
 			file.transferTo(newFile);
