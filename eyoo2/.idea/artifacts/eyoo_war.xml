@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="eyoo:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>eyoo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="eyoo-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="eyoo:war exploded" />
+    </root>
+  </artifact>
+</component>
